@@ -7,6 +7,7 @@ import { CaseStudies } from './sections/CaseStudies';
 import { SideProjects } from './sections/SideProjects';
 import { Education } from './sections/Education';
 import { Quiz } from './sections/Quiz';
+import { Learning } from './sections/Learning';
 import { profile } from './data/content';
 
 export function App() {
@@ -23,6 +24,7 @@ export function App() {
         <TokenExplorer />
         <CaseStudies />
         <SideProjects />
+        <Learning />
         <Education />
         <Quiz />
       </main>

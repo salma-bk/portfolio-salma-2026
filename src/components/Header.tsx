@@ -7,6 +7,7 @@ const LINKS = [
   { href: '#design-system', label: 'Design system' },
   { href: '#projets', label: 'Projets' },
   { href: '#projets-perso', label: 'Projets perso' },
+  { href: '#apprentissage', label: 'Apprentissage' },
   { href: '#formations', label: 'Formations' },
   { href: '#quiz', label: 'Quiz' },
 ];
