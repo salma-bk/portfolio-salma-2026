@@ -37,6 +37,7 @@
 }
 .header__links {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-6);
   list-style: none;
   margin: 0;
@@ -70,6 +71,86 @@
 .theme-toggle {
   min-height: 44px;
   padding-inline: var(--space-3);
+}
+
+/* Menu mobile : bouton hamburger, caché sur bureau */
+.nav-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.nav-toggle__bar,
+.nav-toggle__bar::before,
+.nav-toggle__bar::after {
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease), top var(--duration) var(--ease);
+}
+.nav-toggle__bar {
+  top: 50%;
+  margin-top: -1px;
+}
+.nav-toggle__bar::before {
+  content: "";
+  top: -6px;
+}
+.nav-toggle__bar::after {
+  content: "";
+  top: 6px;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar {
+  background: transparent;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::before {
+  top: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar::after {
+  top: 0;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+#menu-principal {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  max-height: calc(100vh - 100%);
+  overflow-y: auto;
+}
+#menu-principal[data-open="true"] {
+  display: block;
+}
+#menu-principal .header__links {
+  flex-direction: column;
+  gap: 0;
+  padding: var(--space-2) var(--space-4);
+}
+#menu-principal .header__links a {
+  width: 100%;
+  padding-block: var(--space-3);
+}
+#menu-principal .header__links a::after {
+  display: none;
 }
 
 .hero {
@@ -563,6 +644,26 @@
 
 /* Tablette et bureau */
 @media (min-width: 48rem) {
+  .nav-toggle {
+    display: none;
+  }
+  #menu-principal {
+    display: block;
+    position: static;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    max-height: none;
+    overflow: visible;
+  }
+  #menu-principal .header__links {
+    flex-direction: row;
+    gap: var(--space-6);
+    padding: 0;
+  }
+  #menu-principal .header__links a::after {
+    display: block;
+  }
   .proofs {
     grid-template-columns: repeat(4, 1fr);
   }
